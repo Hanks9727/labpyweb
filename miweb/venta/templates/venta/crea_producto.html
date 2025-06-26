@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ titulo }}</title>
+    <style>
+      label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 6px;
+        box-sizing: border-box;
+      }
+      button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #2196f3;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+      button:hover {
+        background-color: #1976d2;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fafafa;
+      }
+      .mensaje-exito {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>{{ titulo }}</h1>
+
+      {% if mensaje %}
+      <div class="mensaje-exito">{{ mensaje }}</div>
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Registrar</button>
+      </form>
+    </div>
+  </body>
+</html>

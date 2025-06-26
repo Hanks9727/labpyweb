@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Detalle del Producto</title>
+  </head>
+  <body>
+    <h1>Detalle del Producto</h1>
+    <ul>
+      <li><strong>Nombre:</strong> {{ producto.nom_prod }}</li>
+      <li><strong>Descripción:</strong> {{ producto.des_prod }}</li>
+      <li><strong>Precio:</strong> S/. {{ producto.precio }}</li>
+      <li><strong>Stock:</strong> {{ producto.stock }}</li>
+      <li>
+        <strong>Estado:</strong> {{ producto.activo|yesno:"Activo,Inactivo" }}
+      </li>
+      <li><strong>Fecha de Vencimiento:</strong> {{ producto.fec_vencim }}</li>
+      <li>
+        <strong>Fecha de Registro:</strong> {{ producto.fec_reg|date:"d/m/Y H:i"
+        }}
+      </li>
+    </ul>
+    <a href="{% url 'q_producto' %}">Volver a la lista</a>
+  </body>
+</html>
