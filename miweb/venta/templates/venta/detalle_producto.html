@@ -14,10 +14,10 @@
         <strong>Estado:</strong> {{ producto.activo|yesno:"Activo,Inactivo" }}
       </li>
       <li><strong>Fecha de Vencimiento:</strong> {{ producto.fec_vencim }}</li>
-      <li>
-        <strong>Fecha de Registro:</strong> {{ producto.fec_reg|date:"d/m/Y H:i"
-        }}
-      </li>
+      <li><strong>Fecha de Registro:</strong> {{ producto.fec_reg|date:"d/m/Y H:i"}}</li>
+        
+       
+      
     </ul>
     <a href="{% url 'q_producto' %}">Volver a la lista</a>
   </body>
