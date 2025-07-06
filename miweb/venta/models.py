@@ -29,3 +29,33 @@ class Producto(models.Model):
 
     def __str__(self):
          return f"{self.nom_prod} - s/.{self.precio} (stock: {self.stock})"
+    
+class Venta(models.Model):
+    cod_venta = models.AutoField(primary_key=True)  # Autocorrelativo
+    cod_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    fec_venta = models.DateField(auto_now_add=True)  # opcional, para registrar la fecha de venta
+
+    def __str__(self):
+        return f"Venta #{self.cod_venta} - Cliente: {self.cod_cliente.ape_nom} - Total: s/.{self.total}"
+
+class VentaDetalle(models.Model):
+    cod_venta_detalle = models.AutoField(primary_key=True)
+    cod_venta = models.ForeignKey(Venta, on_delete=models.CASCADE, related_name='detalles')
+    cod_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField()
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def save(self, *args, **kwargs):
+        self.subtotal = self.cantidad * self.precio_unitario
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.cantidad} x {self.cod_producto.nom_prod} en venta {self.cod_venta.cod_venta}"
+
+
+    
+    
+
+

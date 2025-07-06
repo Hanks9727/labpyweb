@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Venta #{{ venta.cod_venta }}</title>
+</head>
+<body>
+    <h1>Editar Venta #{{ venta.cod_venta }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <h2>Datos de Venta</h2>
+        {{ venta_form.as_p }}
+
+        <h2>Detalles de Venta</h2>
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <div style="margin-bottom:20px; border: 1px solid #ccc; padding:10px;">
+                {{ form.as_p }}
+                {% if form.instance.pk %}
+                <label>Eliminar: {{ form.DELETE }}</label>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <a href="{% url 'lista_ventas' %}">Volver a la lista de ventas</a>
+</body>
+</html>

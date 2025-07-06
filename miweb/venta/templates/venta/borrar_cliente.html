@@ -18,6 +18,32 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .header-section h1 {
+            margin: 0;
+            color: #333;
+        }
+        .btn-exit {
+            background-color: #9E9E9E;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-exit:hover {
+            background-color: #757575;
+        }
         .search-section {
             margin-bottom: 20px;
             padding: 15px;
@@ -179,7 +205,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Eliminar Cliente</h1>
+        <div class="header-section">
+            <h1>Eliminar Cliente</h1>
+            <a href="/" class="btn-exit">Salir</a>
+        </div>
         
         <!-- Mensajes -->
         {% if messages %}

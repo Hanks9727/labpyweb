@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Venta</title>
+</head>
+<body>
+    <h1>Registrar Nueva Venta</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <h2>Datos de Venta</h2>
+        {{ venta_form.as_p }}
+
+        <h2>Detalles de Venta</h2>
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <div style="margin-bottom:20px; border: 1px solid #ccc; padding:10px;">
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Guardar Venta</button>
+    </form>
+</body>
+</html>

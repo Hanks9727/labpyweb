@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ventas Registradas</title>
+</head>
+<body>
+    <h1>Lista de Ventas</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Fecha</th>
+            <th>Acciones</th>  <!-- Nueva columna para botones -->
+        </tr>
+        {% for venta in ventas %}
+        <tr>
+            <td>{{ venta.cod_venta }}</td>
+            <td>{{ venta.cod_cliente.ape_nom }}</td>
+            <td>S/. {{ venta.total }}</td>
+            <td>{{ venta.fec_venta }}</td>
+            <td>
+                <a href="{% url 'editar_venta' venta.cod_venta %}">Editar</a> |
+                <a href="{% url 'eliminar_venta' venta.cod_venta %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+

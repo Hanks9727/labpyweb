@@ -1,0 +1,33 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.cod_cliente.label_tag }} {{ form.cod_cliente }}
+
+    {{ form.cod_producto.label_tag }}
+    <select id="id_cod_producto" name="cod_producto">
+      <option value="">---------</option>
+      {% for p in productos %}
+        <option value="{{ p.id_Producto }}" data-precio="{{ p.precio }}">
+          {{ p.nom_prod }} - s/.{{ p.precio }}
+        </option>
+      {% endfor %}
+    </select>
+
+    {{ form.cantidad.label_tag }} {{ form.cantidad }}
+
+    {{ form.precio_unitario.label_tag }}
+    <input type="text" id="id_precio_unitario" name="precio_unitario" readonly>
+
+    <button type="submit">Guardar Venta</button>
+</form>
+
+<script>
+  const selectProducto = document.getElementById('id_cod_producto');
+  const precioUnitario = document.getElementById('id_precio_unitario');
+
+  selectProducto.addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const precio = selectedOption.getAttribute('data-precio') || '';
+    precioUnitario.value = precio;
+  });
+</script>
+

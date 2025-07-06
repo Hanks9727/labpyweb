@@ -1,9 +1,11 @@
 from django import forms
 #from django.core.validators import RegexValidator
 # De nuestro negocio
-from .models import Cliente
+from .models import Cliente, Venta, VentaDetalle
 # Para gestionar un error
 from django.core.exceptions import ValidationError
+
+from .models import Cliente, Producto, Venta
 
 #Producto
 from .models import Producto
@@ -82,3 +84,17 @@ class ClienteUpdateForm(forms.ModelForm):
             #     )                   
             
         }
+
+
+
+class VentaForm(forms.ModelForm):
+    class Meta:
+        model = Venta
+        fields = ['cod_cliente']  # El total y la fecha se calculan automáticamente
+
+class VentaDetalleForm(forms.ModelForm):
+    class Meta:
+        model = VentaDetalle
+        fields = ['cod_producto', 'cantidad', 'precio_unitario']
+
+

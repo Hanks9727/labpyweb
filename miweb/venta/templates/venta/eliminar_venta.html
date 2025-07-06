@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Venta #{{ venta.cod_venta }}</title>
+</head>
+<body>
+    <h1>Eliminar Venta #{{ venta.cod_venta }}</h1>
+
+    <p>¿Está seguro que desea eliminar esta venta?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+        <a href="{% url 'lista_ventas' %}">Cancelar</a>
+    </form>
+</body>
+</html>
